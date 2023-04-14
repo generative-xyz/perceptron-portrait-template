@@ -6,18 +6,19 @@ This template is based on the [simple Bitcoin generative art template](https://g
 
 ## API
 
-### getModelFromURI
+### getBrain
 
 ```
-async getModelFromURI(uri: string): Model
+async getBrain(perceptronSeed: number, customModelEndpoint: string): Brain
 ```
 
-**Description:** Fetch model description from an URI endpoint, and load the model from description
+**Description:** Fetch the Perceptron (along with its default model) from the specified token seed. If `customModelEndpoint` is specified, the loaded Perceptron will use the model at `customModelEndpoint` instead.
 
 **Parameters:**
-- `uri: string` - The URI of the JSON file describing the model
+- `perceptronSeed: number` - From `1` to `580`, specify the token seed of the Perceptron
+- `customModelEndpoint: string` - The URI of the JSON file describing the custom model the Perceptron will use
 
-**Return:** The loaded model, which is an instance of the Model class
+**Return:** The loaded Perceptron, which is an instance of the `Brain` class
 
 
 ### Model.classifyImage
@@ -38,12 +39,24 @@ classifyImage(pixels: number[]): number[]
 
 ```
 getInfo(): {
-    modelName: string,
-    classesName: string[],
-    inputDim: number[3],
-    hiddenNeurons: number[],
-    activationFunc: string,
-    parameters: {w: Tensor, b: Tensor}[],
+    generalInfo: {
+        modelName: string,
+        classesName: string[],
+        inputDim: number[3],
+        totalNeurons: number[],
+        activationFunc: string,
+        parameters: {w: Tensor, b: Tensor}[],
+    },
+    lifeCycleInfo: {
+        stage: number,
+        stageRatio: number,
+        age: number,
+        growth: number,
+        neuronsLife: number[][],
+        nextStateTimestamp: number,
+        nextStableTimestamp: number,
+        rebirthCount: number,
+    }
 }
 ```
 
@@ -52,12 +65,22 @@ getInfo(): {
 **Parameters:** None
 
 **Return:** An object containing the information of the model
-- `modelName` - A `string` describes model's name
-- `classesName` - Array of `string` describes the name of image classes that the model will classify
-- `inputDim` - Array of three `number` describes the three dimensions (width, height, number of channels) of the input images
-- `hiddenNeurons` - Array of `number` describes the number of neurons in each hidden layer
-- `activationFunc` - A `string` describes the name of the activation function (`ReLU`, `LeakyReLU`, `Tanh` or `Sigmoid`) used in each hidden layer
-- `parameters` - An array containing the parameters of the model. Each element describe the weight (`w`) and bias (`b`) matrices of a hidden layer. 
+- `generalInfo`
+    - `modelName` - A `string` describes model's name
+    - `classesName` - Array of `string` describes the name of image classes that the model will classify
+    - `inputDim` - Array of three `number` describes the three dimensions (width, height, number of channels) of the input images
+    - `hiddenNeurons` - Array of `number` describes the number of neurons in each hidden layer
+    - `activationFunc` - A `string` describes the name of the activation function (`ReLU`, `LeakyReLU`, `Tanh` or `Sigmoid`) used in each hidden layer
+    - `parameters` - An array containing the parameters of the model. Each element describe the weight (`w`) and bias (`b`) matrices of a hidden layer. 
+- `lifeCycleInfo`
+    - `stage` - A number from `1` to `5` describe the current state of the model (`1`: Growing, `2`: Stable, `3`: Decaying, `4`: Dead, `5`: Rebirth)
+    - `stageRatio` - A number from `0` to `1` describe the elapsed portion of current state
+    - `age` - A number from `0` to `60` describe the current age of the model in Perceptron Year
+    - `growth` - A number from `0` to `1` describe the current activation of the Perceptron
+    - `neuronsLife` - A 2D arrays of number from `0` to `1` describing the activation level of each neurons in the Perceptron
+    - `nextStateTimestamp` - The timestamp of the next moment that the Perceptron will change its state
+    - `nextStableTimestamp` - The timestamp of the next moment that the Perceptron will enter the Stable state
+    - `rebirthCount` - A number describe the number of rebirth the Perceptron has went through
 
 ### Tensor
 
@@ -66,15 +89,3 @@ Represent a 2D matrix. Contain the following attributes:
 - `m`: number of columns in the matrix
 - `mat`: An 2D array which is the content of the matrix
   
-
-
-
-
-
-
-The template support loading model from:
-- JSON URI of a perceptron model 
-- Inscription URI of a Perceptron collection item
-- Token Seed (from 1 to 580) of a Perceptron collection item
-
-This template is based on the [simple Bitcoin generative art template](https://github.com/generative-xyz/generative-xyz-template-simple).

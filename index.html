@@ -788,33 +788,36 @@
 
 
     // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Add your code here ↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-    /**
-     * Inscription endpoint can be a uri of:
-     * - JSON file describing a perceptron model
-     * - Inscription of a Perceptron collection item (https://generative.xyz/generative/1002573)
-     * - Token seed (from 1 to 580) of a Perceptron collection item (note that some item may not be minted and will lead to invalid model)
-     */
 
+    // Perceptron token seed should be a number from 1 to 580
+    // Note that some token seed may not be minted yet (and will lead to invalid perceptron seed error)
     const perceptronSeed = 89;
+    // If you want to use custom model, specify a perceptron model JSON URI
+    // Otherwise, leave it empty
     const customModelEndpoint = `sample_model.json`;
 
     const traits = getTraits(perceptronSeed);
     reportTraits(traits);
 
-    const container = document.createElement("div");
-    document.body.prepend(container);
-
-    async function loadAndDisplayInfo() {
-        container.innerHTML = "Loading...";
-        
+    async function getBrain(perceptronSeed, customModelEndpoint) {
         let brain;
-        if (customModelEndpoint) {
+        if (!isNullOrEmpty(customModelEndpoint)) {
             // Load custom model if specified
-            brain = await getBrainFromInscription(traits, customModelEndpoint)
+            brain = await getBrainFromInscription(traits, customModelEndpoint);
         } else {
             // Otherwise, load default model included in the Perceptron
             brain = await getBrainFromTokenSeed(traits, perceptronSeed);
         }
+        return brain;
+    }
+
+    const container = document.createElement("div");
+    document.body.prepend(container);
+
+    async function loadAndDisplayInfo() {
+        // Load Perceptron brain
+        container.innerHTML = "Loading...";
+        const brain = await getBrain(perceptronSeed, customModelEndpoint);
 
         if (brain == null) {
             container.innerHTML = "Invalid perceptron seed";
