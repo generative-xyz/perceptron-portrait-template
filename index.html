@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A simple template for drawing art with perceptron model on Bitcoin</title>
+
+    <!--
+    Generative supports the most popular creative coding libraries. Simply uncomment the library you want to use below.
+    Are we missing an important library? Let us know @generative_xyz.
+    -->
+
+    <!-- p5js@1.5.0
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
+    -->
+
+    <!-- c2.min.js@1.0.0
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdn.generative.xyz/ajax/libs/c2/1.0.0/c2.min.js"></script>
+    -->
+
+    <!-- chromajs@2.4.2
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
+    -->
+
+    <!-- p5.grain.js@0.6.1
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdn.generative.xyz/ajax/libs/p5.grain/0.6.1/p5.grain.min.js"></script>
+    -->
+
+    <!-- threejs@r124
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
+    -->
+
+    <!-- tonejs@14.8.49
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    -->
+
+    <!-- svgjs@3.1.2
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js"></script>
+    -->
+
+    <!-- aframejs@1.2.0
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.2.0/aframe.min.js"></script>
+    -->
+
+    <!-- babylonjs@5.47.0
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs/5.47.0/babylon.js"></script>
+    -->
+
+    <!-- paperjs@0.12.17
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.17/paper-full.min.js"></script>
+    -->
+
+    <!-- regljs@2.1.0
+    <script sandbox="allow-scripts" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/regl/2.1.0/regl.min.js"></script>
+    -->
+
+    <script type="text/javascript">
+    // --------------- Q5.JS LIB ---------------
+    if(typeof exports==="object"&&typeof module!=="undefined")module.exports=Q5;function Q5(e){"use strict";return new function e(t){let n="global"==t?window:this;n.canvas=document.createElement("canvas");let o=n.canvas.getContext("2d");n.width=100;n.height=100;n.canvas.width=n.width;n.canvas.height=n.height;"offscreen"!=t&&(document.body?document.body.appendChild(n.canvas):window.addEventListener("load",function(){document.body.appendChild(n.canvas)}));y();n.MAGIC=161533525;n.RGB=0;n.HSV=1;n.HSB=1;n.CHORD=0;n.PIE=1;n.OPEN=2;n.RADIUS=1;n.CORNER=2;n.CORNERS=3;n.ROUND="round";n.SQUARE="butt";n.PROJECT="square";n.MITER="miter";n.BEVEL="bevel";n.CLOSE=1;n.BLEND="source-over";n.REMOVE="destination-out";n.ADD="lighter";n.DARKEST="darken";n.LIGHTEST="lighten";n.DIFFERENCE="difference";n.SUBTRACT="subtract";n.EXCLUSION="exclusion";n.MULTIPLY="multiply";n.SCREEN="screen";n.REPLACE="copy";n.OVERLAY="overlay";n.HARD_LIGHT="hard-light";n.SOFT_LIGHT="soft-light";n.DODGE="color-dodge";n.BURN="color-burn";n.NORMAL="normal";n.ITALIC="italic";n.BOLD="bold";n.BOLDITALIC="italic bold";n.CENTER="center";n.LEFT="left";n.RIGHT="right";n.TOP="top";n.BOTTOM="bottom";n.BASELINE="alphabetic";n.LANDSCAPE="landscape";n.PORTRAIT="portrait";n.ALT=18;n.BACKSPACE=8;n.CONTROL=17;n.DELETE=46;n.DOWN_ARROW=40;n.ENTER=13;n.ESCAPE=27;n.LEFT_ARROW=37;n.OPTION=18;n.RETURN=13;n.RIGHT_ARROW=39;n.SHIFT=16;n.TAB=9;n.UP_ARROW=38;n.HALF_PI=Math.PI/2;n.PI=Math.PI;n.QUARTER_PI=Math.PI/4;n.TAU=2*Math.PI;n.TWO_PI=2*Math.PI;n.THRESHOLD=1;n.GRAY=2;n.OPAQUE=3;n.INVERT=4;n.POSTERIZE=5;n.DILATE=6;n.ERODE=7;n.BLUR=8;n.ARROW="default";n.CROSS="crosshair";n.HAND="pointer";n.MOVE="move";n.TEXT="text";n.VIDEO={video:!0,audio:!1};n.AUDIO={video:!1,audio:!0};n.SHR3=1;n.LCG=2;n.HARDWARE_FILTERS=!0;n.hint=function(e,t){n[e]=t};n.frameCount=0;n.mouseX=0;n.mouseY=0;n.pmouseX=0;n.pmouseY=0;n.mouseButton=null;n.keyIsPressed=!1;n.mouseIsPressed=!1;n.key=null;n.keyCode=null;n.pixels=null;n.accelerationX=0;n.accelerationY=0;n.accelerationZ=0;n.rotationX=0;n.rotationY=0;n.rotationZ=0;n.relRotationX=0;n.relRotationY=0;n.relRotationZ=0;n.pAccelerationX=0;n.pAccelerationY=0;n.pAccelerationZ=0;n.pRotationX=0;n.pRotationY=0;n.pRotationZ=0;n.pRelRotationX=0;n.pRelRotationY=0;n.pRelRotationZ=0;n.touches=[];n._styleCache=[{colorMode:n.RGB,noStroke:!1,noFill:!1,ellipseMode:n.CENTER,rectMode:n.CORNER,curveDetail:20,curveAlpha:0,textFont:"sans-serif",textSize:12,textLeading:12,textStyle:"normal"}];n._style=n._styleCache[n._styleCache.length-1];n._noLoop=!1;n._pixelDensity=1;n._frameRate=null;n._tint=null;let a=null;let r=!0;let i=[];let l=null;let s=0;let u={};let c=0;let h=null;let f=null;let d=null;Object.defineProperty(n,"deviceOrientation",{get:function(){return 90==Math.abs(window.orientation)?n.LANDSCAPE:n.PORTRAIT}});Object.defineProperty(n,"windowWidth",{get:function(){return window.innerWidth}});Object.defineProperty(n,"windowHeight",{get:function(){return window.innerHeight}});Object.defineProperty(n,"drawingContext",{get:function(){return o}});n.createCanvas=function(e,t){return n.width=e,n.height=t,n.canvas.width=e,n.canvas.height=t,y(),n.canvas};n.resizeCanvas=function(e,t){n.width=e,n.height=t,n.canvas.width=e,n.canvas.height=t};n.createGraphics=n.createImage=function(t,n){let o=new e("offscreen");return o.createCanvas(t,n),o.noLoop(),o};n.pixelDensity=function(e){return null==e?n._pixelDensity:(n._pixelDensity=e,n.canvas.width=Math.ceil(n.width*e),n.canvas.height=Math.ceil(n.height*e),n.canvas.style.width=n.width+"px",n.canvas.style.height=n.height+"px",o.scale(n._pixelDensity,n._pixelDensity),y(),n._pixelDensity)};n.map=function(e,t,n,o,a,r){let i=o+1*(e-t)/(n-t)*(a-o);return r?o<a?Math.min(Math.max(i,o),a):Math.min(Math.max(i,a),o):i};n.lerp=function(e,t,n){return e*(1-n)+t*n};n.constrain=function(e,t,n){return Math.min(Math.max(e,t),n)};n.dist=function(){return 4==arguments.length?Math.hypot(arguments[0]-arguments[2],arguments[1]-arguments[3]):Math.hypot(arguments[0]-arguments[3],arguments[1]-arguments[4],arguments[2]-arguments[5])};n.norm=function(e,t,o){return n.map(e,t,o,0,1)};n.sq=function(e){return e*e};n.fract=function(e){return e-Math.floor(e)};n.degrees=function(e){return 180*e/Math.PI};n.radians=function(e){return e*Math.PI/180};n.abs=Math.abs;n.ceil=Math.ceil;n.exp=Math.exp;n.floor=Math.floor;n.log=Math.log;n.mag=Math.hypot;n.max=Math.max;n.min=Math.min;n.round=Math.round;n.sqrt=Math.sqrt;n.sin=Math.sin;n.cos=Math.cos;n.tan=Math.tan;n.asin=Math.asin;n.acos=Math.acos;n.atan=Math.atan;n.atan2=Math.atan2;n.Vector=function(e,t,o){let a=this;a.x=e||0,a.y=t||0,a.z=o||0;let r=null,i=null;function l(e,t,n){return null!=e.x?e:null!=t?{x:e,y:t,z:n||0}:{x:e,y:e,z:e}}function s(){null==i&&(i=a.x*a.x+a.y*a.y+a.z*a.z,r=Math.sqrt(i))}function u(){i=null,r=null}a.set=function(e,t,n){a.x=e||0,a.y=t||0,a.z=n||0},a.copy=function(){return new n.Vector(a.x,a.y,a.z)},a.add=function(){let e=l.apply(null,arguments);return a.x+=e.x,a.y+=e.y,a.z+=e.z,u(),a},a.rem=function(){let e=l.apply(null,arguments);return a.x%=e.x,a.y%=e.y,a.z%=e.z,u(),a},a.sub=function(){let e=l.apply(null,arguments);return a.x-=e.x,a.y-=e.y,a.z-=e.z,u(),a},a.mult=function(){let e=l.apply(null,arguments);return a.x*=e.x,a.y*=e.y,a.z*=e.z,u(),a},a.div=function(){let e=l.apply(null,arguments);return a.x/=e.x,a.y/=e.y,a.z/=e.z,u(),a},a.mag=function(){return s(),r},a.magSq=function(){return s(),i},a.dot=function(){let e=l.apply(null,arguments);return a.x*e.x+a.y*e.y+a.z*e.z},a.dist=function(){let e=l.apply(null,arguments),t=a.x-e.x,n=a.y-e.y,o=a.z-e.z;return Math.sqrt(t*t+n*n+o*o)},a.cross=function(){let e=l.apply(null,arguments),t=a.y*e.z-a.z*e.y,n=a.z*e.x-a.x*e.z,o=a.x*e.y-a.y*e.x;return a.x=t,a.y=n,a.z=o,u(),a},a.normalize=function(){s();let e=r;return a.x/=e,a.y/=e,a.z/=e,r=1,i=1,a},a.limit=function(e){s();let t=r;if(t>e){let n=e/t;a.x*=n,a.y*=n,a.z*=n,r=e,i=e*e}return a},a.setMag=function(e){s();let t=r,n=e/t;return a.x*=n,a.y*=n,a.z*=n,r=e,i=e*e,a},a.heading=function(){return Math.atan2(a.y,a.x)},a.rotate=function(e){let t=Math.cos(e),n=Math.sin(e),o=a.x*t-a.y*n,r=a.x*n+a.y*t;return a.x=o,a.y=r,a},a.angleBetween=function(){let e=l.apply(null,arguments);const t=a.dot(e)/(a.mag()*e.mag());let n;return n=Math.acos(Math.min(1,Math.max(-1,t))),n*=Math.sign(a.cross(e).z||1)},a.lerp=function(e,t){return a.x=a.x*(1-t)+e.x*t,a.y=a.y*(1-t)+e.y*t,a.z=a.z*(1-t)+e.z*t,u(),a},a.reflect=function(e){return e.normalize(),a.sub(e.mult(2*a.dot(e)))},a.array=function(){return[a.x,a.y,a.z]},a.equals=function(e,t){return null==t&&null==(t=Number.EPSILON)&&(t=0),Math.abs(e.x-a.x)<t&&Math.abs(e.y-a.y)<t&&Math.abs(e.z-a.z)<t},a.fromAngle=function(e,t){return null==t&&(t=1),r=t,i=t*t,a.x=t*Math.cos(e),a.y=t*Math.sin(e),a.z=0,a},a.fromAngles=function(e,t,n){null==n&&(n=1),r=n,i=n*n;const o=Math.cos(t),l=Math.sin(t),s=Math.cos(e),u=Math.sin(e);return a.x=n*u*l,a.y=-n*s,a.z=n*u*o,a},a.random2D=function(){return r=1,i=1,a.fromAngle(Math.random()*Math.PI*2)},a.random3D=function(){return r=1,i=1,a.fromAngles(Math.random()*Math.PI*2,Math.random()*Math.PI*2)},a.toString=function(){return`[${a.x}, ${a.y}, ${a.z}]`}};n.Vector.add=function(e,t){return new n.Vector(e.x+t.x,e.y+t.y,e.z+t.z)};n.Vector.rem=function(e,t){return new n.Vector(e.x%t.x,e.y%t.y,e.z%t.z)};n.Vector.sub=function(e,t){return new n.Vector(e.x-t.x,e.y-t.y,e.z-t.z)};n.Vector.mult=function(e,t){return null==t.x?new n.Vector(e.x*t,e.y*t,e.z*t):new n.Vector(e.x*t.x,e.y*t.y,e.z*t.z)};n.Vector.div=function(e,t){return null==t.x?new n.Vector(e.x/t,e.y/t,e.z/t):new n.Vector(e.x/t.x,e.y/t.y,e.z/t.z)};n.Vector.dist=function(e,t){return Math.hypot(e.x-t.x,e.y-t.y,e.z-t.z)};n.Vector.cross=function(e,t){return new n.Vector(e.y*t.z-e.z*t.y,e.z*t.x-e.x*t.z,e.x*t.y-e.y*t.x)};n.Vector.lerp=function(e,t,o){return new n.Vector(e.x*(1-o)+t.x*o,e.y=e.y*(1-o)+t.y*o,e.z=e.z*(1-o)+t.z*o)};n.Vector.equals=function(e,t,n){return e.equals(t,n)};for(let e of["fromAngle","fromAngles","random2D","random3D"])n.Vector[e]=function(t,o,a){return(new n.Vector)[e](t,o,a)};n.createVector=function(e,t,o){return new n.Vector(e,t,o)};n.curvePoint=function(e,t,n,o,a){const r=a*a*a,i=a*a,l=-.5*r+i-.5*a,s=1.5*r-2.5*i+1,u=-1.5*r+2*i+.5*a,c=.5*r-.5*i;return e*l+t*s+n*u+o*c};n.bezierPoint=function(e,t,n,o,a){const r=1-a;return Math.pow(r,3)*e+3*Math.pow(r,2)*a*t+3*r*Math.pow(a,2)*n+Math.pow(a,3)*o};n.curveTangent=function(e,t,n,o,a){const r=a*a,i=-3*r/2+2*a-.5,l=9*r/2-5*a,s=-9*r/2+4*a+.5,u=3*r/2-a;return e*i+t*l+n*s+o*u};n.bezierTangent=function(e,t,n,o,a){const r=1-a;return 3*o*Math.pow(a,2)-3*n*Math.pow(a,2)+6*n*r*a-6*t*r*a+3*t*Math.pow(r,2)-3*e*Math.pow(r,2)};function p(e,t,n){let o,a,r,i,l,s,u,c,h;if(0==t)return[255*(o=n),255*(a=n),255*(r=n)];switch((i=e)>360&&(i=0),u=n*(1-t),c=n*(1-t*(s=(i/=60)-(l=~~i))),h=n*(1-t*(1-s)),l){case 0:o=n,a=h,r=u;break;case 1:o=c,a=n,r=u;break;case 2:o=u,a=n,r=h;break;case 3:o=u,a=c,r=n;break;case 4:o=h,a=u,r=n;break;default:o=n,a=u,r=c}return[255*o,255*a,255*r]}n.Color=function(e,t,n,o){let a=this;a.MAGIC=786698,a._r=e,a._g=t,a._b=n,a._a=o,a._h=0,a._s=0,a._v=0,a._hsvInferred=!1,a.setRed=function(e){a._r=e,a._hsvInferred=!1},a.setGreen=function(e){a._g=e,a._hsvInferred=!1},a.setBlue=function(e){a._b=e,a._hsvInferred=!1},a.setAlpha=function(e){a._a=e/255,a._hsvInferred=!1},a._inferHSV=function(){a._hsvInferred||([a._h,a._s,a._v]=function(e,t,n){let o,a,r,i,l;if(o=e<t?e<n?e:n:t<n?t:n,0==(l=100*(a=e>t?e>n?e:n:t>n?t:n)/255))return[r=0,i=0,l];if(0==(i=100*(a-o)/a))return[r=0,i,l];r=a==e?0+60*(t-n)/(a-o):a==t?120+60*(n-e)/(a-o):240+60*(e-t)/(a-o);return[r,i,l]}(a._r,a._g,a._b),a._hsvInferred=!0)},a.toString=function(){return`rgba(${Math.round(a._r)},${Math.round(a._g)},${Math.round(a._b)},${~~(1e3*a._a)/1e3})`}};n.colorMode=function(e){n._style.colorMode=e};n.color=function(){if(1==arguments.length&&786698==arguments[0].MAGIC)return arguments[0];if(n._style.colorMode==n.RGB){if(1==arguments.length)return new n.Color(arguments[0],arguments[0],arguments[0],1);if(2==arguments.length)return new n.Color(arguments[0],arguments[0],arguments[0],arguments[1]/255);if(3==arguments.length)return new n.Color(arguments[0],arguments[1],arguments[2],1);if(4==arguments.length)return new n.Color(arguments[0],arguments[1],arguments[2],arguments[3]/255)}else{if(1==arguments.length)return new n.Color(...p(0,0,arguments[0]/100),1);if(2==arguments.length)return new n.Color(...p(0,0,arguments[0]/100),arguments[1]/255);if(3==arguments.length)return new n.Color(...p(arguments[0],arguments[1]/100,arguments[2]/100),1);if(4==arguments.length)return new n.Color(...p(arguments[0],arguments[1]/100,arguments[2]/100),arguments[3])}return null};n.red=function(e){return e._r};n.green=function(e){return e._g};n.blue=function(e){return e._b};n.alpha=function(e){return 255*e._a};n.hue=function(e){return e._inferHSV(),e._h};n.saturation=function(e){return e._inferHSV(),e._s};n.brightness=function(e){return e._inferHSV(),e._v};n.lightness=function(e){return 100*(.2126*e._r+.7152*e._g+.0722*e._b)/255};n.lerpColor=function(e,t,o){return n._style.colorMode==n.RGB?new n.Color(n.constrain(n.lerp(e._r,t._r,o),0,255),n.constrain(n.lerp(e._g,t._g,o),0,255),n.constrain(n.lerp(e._b,t._b,o),0,255),n.constrain(n.lerp(e._a,t._a,o),0,1)):(e._inferHSV(),t._inferHSV(),new n.Color(n.constrain(function(e,t,o){var a=[[Math.abs(t-e),n.map(o,0,1,e,t)],[Math.abs(t+360-e),n.map(o,0,1,e,t+360)],[Math.abs(t-360-e),n.map(o,0,1,e,t-360)]];return a.sort((e,t)=>e[0]-t[0]),(a[0][1]+720)%360}(e._h,t._h,o),0,360),n.constrain(n.lerp(e._s,t._s,o),0,100),n.constrain(n.lerp(e._v,t._v,o),0,100),n.constrain(n.lerp(e._a,t._a,o),0,1)))};function y(){o.fillStyle="white",o.strokeStyle="black",o.lineCap="round",o.lineJoin="miter"}n.strokeWeight=function(e){n._style_noStroke=!1,o.lineWidth=e};n.stroke=function(){if(n._style.noStroke=!1,"string"==typeof arguments[0])return void(o.strokeStyle=arguments[0]);let e=n.color.apply(null,arguments);e._a<=0?n._style.noStroke=!0:o.strokeStyle=e};n.noStroke=function(){n._style.noStroke=!0};n.fill=function(){if(n._style.noFill=!1,"string"==typeof arguments[0])return void(o.fillStyle=arguments[0]);let e=n.color.apply(null,arguments);e._a<=0?n._style.noFill=!0:o.fillStyle=e};n.noFill=function(){n._style.noFill=!0};n.blendMode=function(e){o.globalCompositeOperation=e};n.strokeCap=function(e){o.lineCap=e};n.strokeJoin=function(e){o.lineJoin=e};n.ellipseMode=function(e){n._style.ellipseMode=e};n.rectMode=function(e){n._style.rectMode=e};n.curveDetail=function(e){n._style.curveDetail=e};n.curveAlpha=function(e){n._style.curveAlpha=e};n.curveTightness=function(e){console.warn("curveTightness() sets the 'alpha' parameter of Catmull-Rom curve, and is NOT identical to p5.js counterpart. As this might change in the future, please call curveAlpha() directly."),n._style.curveAlpha=e};n.clear=function(){o.clearRect(0,0,n.width,n.height)};n.background=function(){if(arguments[0]&&arguments[0].MAGIC==n.MAGIC)return n.image(arguments[0],0,0,n.width,n.height);o.save(),o.resetTransform(),o.scale(n._pixelDensity,n._pixelDensity),"string"==typeof arguments[0]?o.fillStyle=arguments[0]:o.fillStyle=n.color(...Array.from(arguments)),o.fillRect(0,0,n.width,n.height),o.restore()};n.line=function(e,t,a,r){n._style.noStroke||(o.beginPath(),o.moveTo(e,t),o.lineTo(a,r),o.stroke())};function m(e){if(0<=e&&e<2*Math.PI)return e;for(;e<0;)e+=2*Math.PI;for(;e>=Math.PI;)e-=2*Math.PI;return e}function g(e,t,a,r,i,l,s,u){if(n._style.noFill&&n._style.noStroke)return;let c=m(i),h=m(l);o.beginPath();for(let i=0;i<u+1;i++){let l=i/u,s=n.lerp(c,h,l),f=Math.cos(s)*a/2,d=Math.sin(s)*r/2;o[i?"lineTo":"moveTo"](e+f,t+d)}s==n.CHORD?o.closePath():s==n.PIE&&(o.lineTo(e,t),o.closePath()),n._style.noFill||o.fill(),n._style.noStroke||o.stroke()}n.arc=function(e,t,o,a,r,i,l,s){if(r==i)return n.ellipse(e,t,o,a);null==s&&(s=25),null==l&&(l=n.PIE),n._style.ellipseMode==n.CENTER?g(e,t,o,a,r,i,l,s):n._style.ellipseMode==n.RADIUS?g(e,t,2*o,2*a,r,i,l,s):n._style.ellipseMode==n.CORNER?g(e+o/2,t+a/2,o,a,r,i,l,s):n._style.ellipseMode==n.CORNERS&&g((e+o)/2,(t+a)/2,o-e,a-t,r,i,l,s)};function v(e,t,a,r){n._style.noFill&&n._style.noStroke||(o.beginPath(),o.ellipse(e,t,a/2,r/2,0,0,2*Math.PI),n._style.noFill||o.fill(),n._style.noStroke||o.stroke())}n.ellipse=function(e,t,o,a){null==a&&(a=o),n._style.ellipseMode==n.CENTER?v(e,t,o,a):n._style.ellipseMode==n.RADIUS?v(e,t,2*o,2*a):n._style.ellipseMode==n.CORNER?v(e+o/2,t+a/2,o,a):n._style.ellipseMode==n.CORNERS&&v((e+o)/2,(t+a)/2,o-e,a-t)};n.circle=function(e,t,o){return n.ellipse(e,t,o,o)};n.point=function(e,t){e.x&&(t=e.y,e=e.x),o.beginPath(),o.ellipse(e,t,.4,.4,0,0,2*Math.PI),o.stroke()};function _(e,t,a,r,i,l,s,u){if(n._style.noFill&&n._style.noStroke)return;if(null==i)return function(e,t,a,r){n._style.noFill||o.fillRect(e,t,a,r);n._style.noStroke||o.strokeRect(e,t,a,r)}(e,t,a,r);if(null==l)return _(e,t,a,r,i,i,i,i);const c=Math.min(Math.abs(r),Math.abs(a))/2;i=Math.min(c,i),l=Math.min(c,l),u=Math.min(c,u),s=Math.min(c,s),o.beginPath(),o.moveTo(e+i,t),o.arcTo(e+a,t,e+a,t+r,l),o.arcTo(e+a,t+r,e,t+r,s),o.arcTo(e,t+r,e,t,u),o.arcTo(e,t,e+a,t,i),o.closePath(),n._style.noFill||o.fill(),n._style.noStroke||o.stroke()}n.rect=function(e,t,o,a,r,i,l,s){n._style.rectMode==n.CENTER?_(e-o/2,t-a/2,o,a,r,i,l,s):n._style.rectMode==n.RADIUS?_(e-o,t-a,2*o,2*a,r,i,l,s):n._style.rectMode==n.CORNER?_(e,t,o,a,r,i,l,s):n._style.rectMode==n.CORNERS&&_(e,t,o-e,a-t,r,i,l,s)};n.square=function(e,t,o,a,r,i,l){return n.rect(e,t,o,o,a,r,i,l)};function M(){i=[]}n.beginShape=function(){M(),o.beginPath(),r=!0};n.beginContour=function(){o.closePath(),M(),r=!0};n.endContour=function(){M(),r=!0};n.vertex=function(e,t){M(),r?o.moveTo(e,t):o.lineTo(e,t),r=!1};n.bezierVertex=function(e,t,n,a,r,i){M(),o.bezierCurveTo(e,t,n,a,r,i)};n.quadraticVertex=function(e,t,n,a){M(),o.quadraticCurveTo(e,t,n,a)};n.bezier=function(e,t,o,a,r,i,l,s){n.beginShape(),n.vertex(e,t),n.bezierVertex(o,a,r,i,l,s),n.endShape()};n.triangle=function(e,t,o,a,r,i){n.beginShape(),n.vertex(e,t),n.vertex(o,a),n.vertex(r,i),n.endShape(n.CLOSE)};n.quad=function(e,t,o,a,r,i,l,s){n.beginShape(),n.vertex(e,t),n.vertex(o,a),n.vertex(r,i),n.vertex(l,s),n.endShape(n.CLOSE)};n.endShape=function(e){M(),e&&o.closePath(),n._style.noFill||o.fill(),n._style.noStroke||o.stroke(),n._style.noFill&&n._style.noStroke&&(o.save(),o.fillStyle="none",o.fill(),o.restore())};n.curveVertex=function(e,t){if(i.push([e,t]),i.length<4)return;let a=i[i.length-4],l=i[i.length-3],s=i[i.length-2],u=i[i.length-1],c=function(e,t,n,o,a,r,i,l,s,u){function c(e,t,n,o,a,r){let i=Math.pow(o-t,2)+Math.pow(a-n,2),l=Math.pow(i,.5*r);return l+e}let h=[],f=c(0,e,t,n,o,u),d=c(f,n,o,a,r,u),p=c(d,a,r,i,l,u);for(let u=0;u<s;u++){let c=f+u/(s-1)*(d-f),y=[(f-c)/(f-0),(c-0)/(f-0),(d-c)/(d-f),(c-f)/(d-f),(p-c)/(p-d),(c-d)/(p-d),(d-c)/(d-0),(c-0)/(d-0),(p-c)/(p-f),(c-f)/(p-f)];for(let e=0;e<y.length;e+=2)isNaN(y[e])&&(y[e]=1,y[e+1]=0),isFinite(y[e])||(y[e]>0?(y[e]=1,y[e+1]=0):(y[e]=0,y[e+1]=1));let m=e*y[0]+n*y[1],g=t*y[0]+o*y[1],v=n*y[2]+a*y[3],_=o*y[2]+r*y[3],M=a*y[4]+i*y[5],x=r*y[4]+l*y[5],w=m*y[6]+v*y[7],R=g*y[6]+_*y[7],I=v*y[8]+M*y[9],C=_*y[8]+x*y[9],E=w*y[2]+I*y[3],S=R*y[2]+C*y[3];h.push([E,S])}return h}(...a,...l,...s,...u,n._style.curveDetail,n._style.curveAlpha);for(let e=0;e<c.length;e++)r?o.moveTo(...c[e]):o.lineTo(...c[e]),r=!1};n.curve=function(e,t,o,a,r,i,l,s){n.beginShape(),n.curveVertex(e,t),n.curveVertex(o,a),n.curveVertex(r,i),n.curveVertex(l,s),n.endShape()};n.translate=function(e,t){o.translate(e,t)};n.rotate=function(e){o.rotate(e)};n.scale=function(e,t){null==t&&(t=e),o.scale(e,t)};n.applyMatrix=function(e,t,n,a,r,i){o.transform(e,t,n,a,r,i)};n.shearX=function(e){o.transform(1,0,Math.tan(e),1,0,0)};n.shearY=function(e){o.transform(1,Math.tan(e),0,1,0,0)};n.resetMatrix=function(){o.resetTransform(),o.scale(n._pixelDensity,n._pixelDensity)};n.pushMatrix=n.push=function(){n._styleCache.push({...n._style}),n._style=n._styleCache[n._styleCache.length-1],o.save()};n.popMatrix=n.pop=function(){n._styleCache.length-1&&(n._styleCache.pop(),n._style=n._styleCache[n._styleCache.length-1],o.restore())};n.image=function(e,t,a,r,i,l,s,u,c){let h=e.MAGIC==n.MAGIC?e.canvas:e;function d(){if(e.MAGIC!=n.MAGIC||!n._tint)return;let t=e.canvas.getContext("2d");t.save(),t.resetTransform(),t.clearRect(0,0,t.canvas.width,t.canvas.height),t.drawImage(f.canvas,0,0),t.restore()}return e.MAGIC==n.MAGIC&&null!=n._tint&&(!function(e,t){null==f&&(f=document.createElement("canvas").getContext("2d"));null==e&&(e=o.canvas.width,t=o.canvas.height);f.canvas.width==e&&f.canvas.height==t||(f.canvas.width=e,f.canvas.height=t)}(e.canvas.width,e.canvas.height),f.drawImage(e.canvas,0,0),e.tinted(n._tint)),r?l?(u||(u=h.width),c||(c=h.height),o.drawImage(h,l,s,u,c,t,a,r,i),void d()):(o.drawImage(h,t,a,r,i),void d()):(e.MAGIC==n.MAGIC||e.width?o.drawImage(h,t,a,e.width,e.height):o.drawImage(h,t,a,e.videoWidth,e.videoHeight),void d())};n.loadPixels=function(){l=o.getImageData(0,0,n.canvas.width,n.canvas.height),n.pixels=l.data};n.updatePixels=function(){null!=l&&o.putImageData(l,0,0)};n.loadImage=function(e,t){s++;let o=n.createGraphics(100,100),a=o.canvas.getContext("2d"),r=new Image;return r.src=e,r.crossOrigin="Anonymous",r.onload=function(){a.canvas.width=r.width,a.canvas.height=r.height,o.width=r.width,o.height=r.height,a.drawImage(r,0,0),s--,t&&t(o)},o};let x={};x[n.THRESHOLD]=function(e,t){null==t?t=127.5:t*=255;for(let n=0;n<e.length;n+=4){const o=.2126*e[n]+.7152*e[n+1]+.0722*e[n+2];e[n]=e[n+1]=e[n+2]=o>=t?255:0}};x[n.GRAY]=function(e){for(let t=0;t<e.length;t+=4){const n=.2126*e[t]+.7152*e[t+1]+.0722*e[t+2];e[t]=e[t+1]=e[t+2]=n}};x[n.OPAQUE]=function(e){for(let t=0;t<e.length;t+=4)e[t+3]=255};x[n.INVERT]=function(e){for(let t=0;t<e.length;t+=4)e[t]=255-e[t],e[t+1]=255-e[t+1],e[t+2]=255-e[t+2]};x[n.POSTERIZE]=function(e,t){let n=t-1;for(let o=0;o<e.length;o+=4)e[o]=255*(e[o]*t>>8)/n,e[o+1]=255*(e[o+1]*t>>8)/n,e[o+2]=255*(e[o+2]*t>>8)/n};x[n.DILATE]=function(e){R(),d.set(e);let[t,n]=[o.canvas.width,o.canvas.height];for(let o=0;o<n;o++)for(let a=0;a<t;a++){let r=4*Math.max(a-1,0),i=4*Math.min(a+1,t-1),l=4*Math.max(o-1,0)*t,s=4*Math.min(o+1,n-1)*t,u=4*o*t,c=4*a;for(let t=0;t<4;t++){let n=t+l,o=t+s,a=t+u;e[u+c+t]=Math.max(d[n+c],d[a+r],d[a+c],d[a+i],d[o+c])}}};x[n.ERODE]=function(e){R(),d.set(e);let[t,n]=[o.canvas.width,o.canvas.height];for(let o=0;o<n;o++)for(let a=0;a<t;a++){let r=4*Math.max(a-1,0),i=4*Math.min(a+1,t-1),l=4*Math.max(o-1,0)*t,s=4*Math.min(o+1,n-1)*t,u=4*o*t,c=4*a;for(let t=0;t<4;t++){let n=t+l,o=t+s,a=t+u;e[u+c+t]=Math.min(d[n+c],d[a+r],d[a+c],d[a+i],d[o+c])}}};x[n.BLUR]=function(e,t){t=t||1,t=Math.floor(t*n._pixelDensity),R(),d.set(e);let a=2*t+1;let r=function(e){let n=new Float32Array(e),o=.3*t+.8,a=o*o*2;for(let t=0;t<e;t++){let r=t-e/2,i=Math.exp(-r*r/a)/(2.5066282746*o);n[t]=i}return n}(a),[i,l]=[o.canvas.width,o.canvas.height];for(let n=0;n<l;n++)for(let o=0;o<i;o++){let l=0,s=0,u=0,c=0;for(let e=0;e<a;e++){let a=Math.min(Math.max(o-t+e,0),i-1),h=4*(n*i+a);l+=d[h]*r[e],s+=d[h+1]*r[e],u+=d[h+2]*r[e],c+=d[h+3]*r[e]}let h=4*(n*i+o);e[h]=l,e[h+1]=s,e[h+2]=u,e[h+3]=c}d.set(e);for(let n=0;n<l;n++)for(let o=0;o<i;o++){let s=0,u=0,c=0,h=0;for(let e=0;e<a;e++){let a=Math.min(Math.max(n-t+e,0),l-1),f=4*(a*i+o);s+=d[f]*r[e],u+=d[f+1]*r[e],c+=d[f+2]*r[e],h+=d[f+3]*r[e]}let f=4*(n*i+o);e[f]=s,e[f+1]=u,e[f+2]=c,e[f+3]=h}};function w(e,t){null==h&&(h=document.createElement("canvas").getContext("2d")),null==e&&(e=o.canvas.width,t=o.canvas.height),h.canvas.width==e&&h.canvas.height==t||(h.canvas.width=e,h.canvas.height=t)}function R(){let e=o.canvas.width*o.canvas.height*4;null!=d&&e==d.length||(d=new Uint8ClampedArray(e))}function I(e){h.clearRect(0,0,h.canvas.width,h.canvas.height),h.filter=e,h.drawImage(o.canvas,0,0),o.save(),o.resetTransform(),o.clearRect(0,0,o.canvas.width,o.canvas.height),o.drawImage(h.canvas,0,0),o.restore()}n.filter=function(e,t){let a=n.HARDWARE_FILTERS&&null!=o.filter;if(a)if(w(),e==n.THRESHOLD){null==t&&(t=.5),t=Math.max(t,1e-5);let e=Math.floor(.5/t*100);I(`saturate(0%) brightness(${e}%) contrast(1000000%)`)}else if(e==n.GRAY)I("saturate(0%)");else if(e==n.OPAQUE)h.fillStyle="black",h.fillRect(0,0,h.canvas.width,h.canvas.height),h.drawImage(o.canvas,0,0),o.save(),o.resetTransform(),o.drawImage(h.canvas,0,0),o.restore();else if(e==n.INVERT)I("invert(100%)");else if(e==n.BLUR)I(`blur(${Math.ceil(t*n._pixelDensity/1)||1}px)`);else{let n=o.getImageData(0,0,o.canvas.width,o.canvas.height);x[e](n.data,t),o.putImageData(n,0,0)}else{let n=o.getImageData(0,0,o.canvas.width,o.canvas.height);x[e](n.data,t),o.putImageData(n,0,0)}};n.resize=function(e,t){w(),h.drawImage(o.canvas,0,0),n.width=e,n.height=t,o.canvas.width=e*n._pixelDensity,o.canvas.height=t*n._pixelDensity,o.save(),o.resetTransform(),o.clearRect(0,0,o.canvas.width,o.canvas.height),o.drawImage(h.canvas,0,0,o.canvas.width,o.canvas.height),o.restore()};n.get=function(e,t,a,r){if(null!=e&&null==a){let a=o.getImageData(e,t,1,1).data;return new n.Color(a[0],a[1],a[2],a[3]/255)}e=e||0,t=t||0,a=a||n.width,r=r||n.height;let i=n.createGraphics(a,r);i.pixelDensity(n._pixelDensity);let l=o.getImageData(e*n._pixelDensity,t*n._pixelDensity,a*n._pixelDensity,r*n._pixelDensity);return i.canvas.getContext("2d").putImageData(l,0,0),i};n.set=function(e,t,a){if(a.MAGIC==n.MAGIC){let o=n._tint;return n._tint=null,n.image(a,e,t),void(n._tint=o)}let r=4*(t*n._pixelDensity*o.canvas.width+e*n._pixelDensity);n.pixels[r]=a._r,n.pixels[r+1]=a._g,n.pixels[r+2]=a._b,n.pixels[r+3]=255*a._a};n.tinted=function(){let e=n.color(...Array.from(arguments)),t=e._a;e._a=1,w(),h.clearRect(0,0,h.canvas.width,h.canvas.height),h.fillStyle=e,h.fillRect(0,0,h.canvas.width,h.canvas.height),h.globalCompositeOperation="multiply",h.drawImage(o.canvas,0,0),h.globalCompositeOperation="source-over",o.save(),o.resetTransform();let a=o.globalCompositeOperation;o.globalCompositeOperation="source-in",o.drawImage(h.canvas,0,0),o.globalCompositeOperation=a,o.restore(),h.globalAlpha=t,h.clearRect(0,0,h.canvas.width,h.canvas.height),h.drawImage(o.canvas,0,0),h.globalAlpha=1,o.save(),o.resetTransform(),o.clearRect(0,0,o.canvas.width,o.canvas.height),o.drawImage(h.canvas,0,0),o.restore()};n.tint=function(){n._tint=n.color(...Array.from(arguments))};n.noTint=function(){n._tint=null};n.mask=function(e){o.save(),o.resetTransform();let t=o.globalCompositeOperation;o.globalCompositeOperation="destination-in",o.drawImage(e.canvas,0,0),o.globalCompositeOperation=t,o.restore()};n.clearTemporaryBuffers=function(){h=null,f=null,d=null};n.save=function(e,t){e=e||"untitled",t=t||"png";var n=document.createElement("a");n.innerHTML="[Download]",n.addEventListener("click",function(){this.href=o.canvas.toDataURL(),this.download=e+"."+t},!1),document.body.appendChild(n),n.click(),document.body.removeChild(n)};n.saveCanvas=function(e,t,o){if(e.MAGIC==n.MAGIC){o&&e.save(t,o);let n=t.split(".");return e.save(n.slice(0,-1).join("."),n[n.length-1])}if(t)return n.save(e,t);let a=e.split(".");return n.save(a.slice(0,-1).join("."),a[a.length-1])};n.loadFont=function(e,t){let n=e.split("/"),o=n[n.length-1].split(".")[0].replace(" ",""),a=`@font-face {\n        font-family: '${o}';\n        src: url('${e}');\n      }`;const r=document.createElement("style");return r.textContent=a,document.head.append(r),o};n.textFont=function(e){n._style.textFont=e};n.textSize=function(e){n._style.textSize=e,n._style.textLeading=e};n.textLeading=function(e){n._style.textLeading=e};n.textStyle=function(e){n._style.textStyle=e};n.textAlign=function(e,t){o.textAlign=e,t&&(o.textBaseline=t==n.CENTER?"middle":t)};n.text=function(e,t,a,r){if(!e)return;if(e=e.toString(),n._style.noFill&&n._style.noStroke)return;o.font=`${n._style.textStyle} ${n._style.textSize}px ${n._style.textFont}`;let i=e.split("\n");for(let e=0;e<i.length;e++)n._style.noFill||o.fillText(i[e],t,a,r),n._style.noStroke||o.strokeText(i[e],t,a,r),a+=n._style.textLeading};n.textWidth=function(e){return o.font=`${n._style.textStyle} ${n._style.textSize}px ${n._style.textFont}`,o.measureText(e).width};n.textAscent=function(e){return o.font=`${n._style.textStyle} ${n._style.textSize}px ${n._style.textFont}`,o.measureText(e).actualBoundingBoxAscent};n.textDescent=function(e){return o.font=`${n._style.textStyle} ${n._style.textSize}px ${n._style.textFont}`,o.measureText(e).actualBoundingBoxDescent};var C=4;var E=.5;var S=function(e){return.5*(1-Math.cos(e*Math.PI))};var A;n.noise=function(e,t,n){if(t=t||0,n=n||0,null==A){A=new Array(4096);for(var o=0;o<4096;o++)A[o]=Math.random()}e<0&&(e=-e),t<0&&(t=-t),n<0&&(n=-n);for(var a,r,i,l,s,u=Math.floor(e),c=Math.floor(t),h=Math.floor(n),f=e-u,d=t-c,p=n-h,y=0,m=.5,g=0;g<C;g++){var v=u+(c<<4)+(h<<8);a=S(f),r=S(d),i=A[4095&v],i+=a*(A[v+1&4095]-i),l=A[v+16&4095],l+=a*(A[v+16+1&4095]-l),i+=r*(l-i),l=A[4095&(v+=256)],l+=a*(A[v+1&4095]-l),s=A[v+16&4095],s+=a*(A[v+16+1&4095]-s),l+=r*(s-l),i+=S(p)*(l-i),y+=i*m,m*=E,u<<=1,c<<=1,h<<=1,(f*=2)>=1&&(u++,f--),(d*=2)>=1&&(c++,d--),(p*=2)>=1&&(h++,p--)}return y};n.noiseDetail=function(e,t){e>0&&(C=e),t>0&&(E=t)};const D=function(){let e,t,n=4294967295;return{setSeed(o){e=t=(null==o?Math.random()*n:o)>>>0},getSeed:()=>t,rand:()=>(e^=e<<17,e^=e>>13,((e^=e<<5)>>>0)/n)}};let T=D();T.setSeed();n.noiseSeed=function(e){let t=null==e?4294967295*Math.random():e;A||(A=new Float32Array(4096));for(var n=0;n<4096;n++)t^=t<<17,t^=t>>13,t^=t<<5,A[n]=(t>>>0)/4294967295};n.randomSeed=function(e){T.setSeed(e)};n.random=function(e,t){return null==e?T.rand():"number"==typeof e?null!=t?T.rand()*(t-e)+e:T.rand()*e:e[~~(e.length*T.rand())]};n.randomGenerator=function(e){e==n.LCG?T=function(){const e=4294967296;let t,n;return{setSeed(o){n=t=(null==o?Math.random()*e:o)>>>0},getSeed:()=>t,rand:()=>(n=(1664525*n+1013904223)%e)/e}}():e==n.SHR3&&(T=D()),T.setSeed()};var P=new function(){var e,t,n,o=new Array(128),a=new Array(256),r=new Array(128),i=new Array(128),l=new Array(256),s=new Array(256),u=function(){return 4294967296*T.rand()-2147483648},c=function(){return.5+2.328306e-10*(u()<<0)},h=function(){for(var t,a,l,s,h=3.44262;;){if(t=n*r[e],0==e){do{l=c(),s=c(),t=.2904764*-Math.log(l),a=-Math.log(s)}while(a+a<t*t);return n>0?h+t:-h-t}if(i[e]+c()*(i[e-1]-i[e])<Math.exp(-.5*t*t))return t;if(n=u(),e=127&n,Math.abs(n)<o[e])return n*r[e]}},f=function(){for(var n;;){if(0==e)return 7.69711-Math.log(c());if(n=t*l[e],s[e]+c()*(s[e-1]-s[e])<Math.exp(-n))return n;if((t=u())<a[e=255&t])return t*l[e]}};this.SHR3=u,this.UNI=c,this.RNOR=function(){return n=u(),e=127&n,Math.abs(n)<o[e]?n*r[e]:h()},this.REXP=function(){return(t=u()>>>0)<o[e=255&t]?t*l[e]:f()},this.zigset=function(){var e,t,n=2147483648,u=4294967296,c=3.442619855899,h=c,f=.00991256303526217,d=7.697117470131487,p=d,y=.003949659822581572;for(e=f/Math.exp(-.5*c*c),o[0]=Math.floor(c/e*n),o[1]=0,r[0]=e/n,r[127]=c/n,i[0]=1,i[127]=Math.exp(-.5*c*c),t=126;t>=1;t--)c=Math.sqrt(-2*Math.log(f/c+Math.exp(-.5*c*c))),o[t+1]=Math.floor(c/h*n),h=c,i[t]=Math.exp(-.5*c*c),r[t]=c/n;for(e=y/Math.exp(-d),a[0]=Math.floor(d/e*u),a[1]=0,l[0]=e/u,l[255]=d/u,s[0]=1,s[255]=Math.exp(-d),t=254;t>=1;t--)d=-Math.log(y/d+Math.exp(-d)),a[t+1]=Math.floor(d/p*u),p=d,s[t]=Math.exp(-d),l[t]=d/u}};P.hasInit=!1;n.randomGaussian=function(e,t){return P.hasInit||(P.zigset(),P.hasInit=!0),P.RNOR()*t+e};n.randomExponential=function(){return P.hasInit||(P.zigset(),P.hasInit=!0),P.REXP()};n.print=console.log;n.cursor=function(e,t,o){let a="";e.includes(".")&&(e=`url("${e}")`,a=", auto"),null!=t&&(e+=" "+t+" "+o),n.canvas.style.cursor=e+a};n.noCursor=function(){n.canvas.style.cursor="none"};n.createCapture=function(e){var t=document.createElement("video");return t.playsinline="playsinline",t.autoplay="autoplay",navigator.mediaDevices.getUserMedia(e).then(function(e){t.srcObject=e}),t.style.position="absolute",t.style.opacity=1e-5,t.style.zIndex=-1e3,document.body.appendChild(t),t};let b=["setup","draw","preload","mouseMoved","mousePressed","mouseReleased","mouseDragged","mouseClicked","keyPressed","keyReleased","keyTyped","touchStarted","touchEnded"];for(let e of b){let t="_"+e+"Fn";n[t]=function(){},n[t].isPlaceHolder=!0,n[e]?n[t]=n[e]:Object.defineProperty(n,e,{set:function(e){n[t]=e}})}function z(){n._noLoop||(a=null==n._frameRate?requestAnimationFrame(z):setTimeout(z,1e3/n._frameRate)),M(),r=!0,n.push(),n._drawFn(),n.pop(),++n.frameCount}n.noLoop=function(){n._noLoop=!0,a=null};n.loop=function(){n._noLoop=!1,null==a&&z()};n.redraw=function(){z()};n.frameRate=function(e){n._frameRate=e};setTimeout(function(){n._preloadFn(),c=window.performance.now(),function e(){if(s>0)return setTimeout(e,10);n._setupFn();z()}()},1);n.canvas.onmousemove=function(e){n.pmouseX=n.mouseX,n.pmouseY=n.mouseY,n.mouseX=e.offsetX,n.mouseY=e.offsetY,n.mouseIsPressed?n._mouseDraggedFn(e):n._mouseMovedFn(e)};n.canvas.onmousedown=function(e){n.pmouseX=n.mouseX,n.pmouseY=n.mouseY,n.mouseX=e.offsetX,n.mouseY=e.offsetY,n.mouseIsPressed=!0,n.mouseButton=[n.LEFT,n.CENTER,n.RIGHT][e.button],n._mousePressedFn(e)};n.canvas.onmouseup=function(e){n.pmouseX=n.mouseX,n.pmouseY=n.mouseY,n.mouseX=e.offsetX,n.mouseY=e.offsetY,n.mouseIsPressed=!1,n._mouseReleasedFn(e)};n.canvas.onclick=function(e){n.pmouseX=n.mouseX,n.pmouseY=n.mouseY,n.mouseX=e.offsetX,n.mouseY=e.offsetY,n.mouseIsPressed=!0,n._mouseClickedFn(e),n.mouseIsPressed=!1};window.addEventListener("keydown",function(e){n.keyIsPressed=!0,n.key=e.key,n.keyCode=e.keyCode,u[n.keyCode]=!0,n._keyPressedFn(e),1==e.key.length&&n._keyTypedFn(e)});window.addEventListener("keyup",function(e){n.keyIsPressed=!1,n.key=e.key,n.keyCode=e.keyCode,u[n.keyCode]=!1,n._keyReleasedFn(e)});n.keyIsDown=function(e){return!!u[e]};function O(e){const t=n.canvas.getBoundingClientRect(),o=n.canvas.scrollWidth/n.width||1,a=n.canvas.scrollHeight/n.height||1;return{x:(e.clientX-t.left)/o,y:(e.clientY-t.top)/a,id:e.identifier}}function k(){return n._touchStarted.isPlaceHolder&&n._touchMoved.isPlaceHolder&&n._touchEnded.isPlaceHolder}n.canvas.ontouchstart=function(e){n.touches=e.touches.map(O),k()&&(n.pmouseX=n.mouseX,n.pmouseY=n.mouseY,n.mouseX=n.touches[0].x,n.mouseY=n.touches[0].y,n.mouseIsPressed=!0,n.mouseButton=n.LEFT,n._mousePressedFn(e)||e.preventDefault()),n._touchStartedFn(e)||e.preventDefault()};n.canvas.ontouchmove=function(e){n.touches=e.touches.map(O),k()&&(n.pmouseX=n.mouseX,n.pmouseY=n.mouseY,n.mouseX=n.touches[0].x,n.mouseY=n.touches[0].y,n.mouseIsPressed=!0,n.mouseButton=n.LEFT,n._mouseDraggedFn(e)||e.preventDefault()),n._touchMovedFn(e)||e.preventDefault()};n.canvas.ontouchend=n.canvas.ontouchcancel=function(e){n.touches=e.touches.map(O),k()&&(n.pmouseX=n.mouseX,n.pmouseY=n.mouseY,n.mouseX=n.touches[0].x,n.mouseY=n.touches[0].y,n.mouseIsPressed=!1,n._mouseReleasedFn(e)||e.preventDefault()),n._touchEndedFn(e)||e.preventDefault()};n.hasSensorPermission=!window.DeviceOrientationEvent&&!window.DeviceMotionEvent||!(DeviceOrientationEvent.requestPermission||DeviceMotionEvent.requestPermission);n.requestSensorPermissions=function(){DeviceOrientationEvent.requestPermission&&DeviceOrientationEvent.requestPermission().then(e=>{"granted"==e&&DeviceMotionEvent.requestPermission&&DeviceMotionEvent.requestPermission().then(e=>{"granted"==e&&(n.hasSensorPermission=!0)}).catch(alert)}).catch(alert)};window.ondeviceorientation=function(e){n.pRotationX=n.rotationX,n.pRotationY=n.rotationY,n.pRotationZ=n.rotationZ,n.pRelRotationX=n.relRotationX,n.pRelRotationY=n.relRotationY,n.pRelRotationZ=n.relRotationZ,n.rotationX=e.beta*(Math.PI/180),n.rotationY=e.gamma*(Math.PI/180),n.rotationZ=e.alpha*(Math.PI/180),n.relRotationX=[-n.rotationY,-n.rotationX,n.rotationY][1+~~(window.orientation/90)],n.relRotationY=[-n.rotationX,n.rotationY,n.rotationX][1+~~(window.orientation/90)],n.relRotationZ=n.rotationZ};window.ondevicemotion=function(e){if(n.pAccelerationX=n.accelerationX,n.pAccelerationY=n.accelerationY,n.pAccelerationZ=n.accelerationZ,!e.acceleration){let t=((e,t)=>[(e[0]*t[0]+e[1]*t[1]+e[2]*t[2]+e[3])/(e[12]*t[0]+e[13]*t[1]+e[14]*t[2]+e[15]),(e[4]*t[0]+e[5]*t[1]+e[6]*t[2]+e[7])/(e[12]*t[0]+e[13]*t[1]+e[14]*t[2]+e[15]),(e[8]*t[0]+e[9]*t[1]+e[10]*t[2]+e[11])/(e[12]*t[0]+e[13]*t[1]+e[14]*t[2]+e[15])])(((e,t)=>[e[0]*t[0]+e[1]*t[4]+e[2]*t[8]+e[3]*t[12],e[0]*t[1]+e[1]*t[5]+e[2]*t[9]+e[3]*t[13],e[0]*t[2]+e[1]*t[6]+e[2]*t[10]+e[3]*t[14],e[0]*t[3]+e[1]*t[7]+e[2]*t[11]+e[3]*t[15],e[4]*t[0]+e[5]*t[4]+e[6]*t[8]+e[7]*t[12],e[4]*t[1]+e[5]*t[5]+e[6]*t[9]+e[7]*t[13],e[4]*t[2]+e[5]*t[6]+e[6]*t[10]+e[7]*t[14],e[4]*t[3]+e[5]*t[7]+e[6]*t[11]+e[7]*t[15],e[8]*t[0]+e[9]*t[4]+e[10]*t[8]+e[11]*t[12],e[8]*t[1]+e[9]*t[5]+e[10]*t[9]+e[11]*t[13],e[8]*t[2]+e[9]*t[6]+e[10]*t[10]+e[11]*t[14],e[8]*t[3]+e[9]*t[7]+e[10]*t[11]+e[11]*t[15],e[12]*t[0]+e[13]*t[4]+e[14]*t[8]+e[15]*t[12],e[12]*t[1]+e[13]*t[5]+e[14]*t[9]+e[15]*t[13],e[12]*t[2]+e[13]*t[6]+e[14]*t[10]+e[15]*t[14],e[12]*t[3]+e[13]*t[7]+e[14]*t[11]+e[15]*t[15]])((e=>[Math.cos(e),0,Math.sin(e),0,0,1,0,0,-Math.sin(e),0,Math.cos(e),0,0,0,0,1])(n.rotationY),(e=>[1,0,0,0,0,Math.cos(e),-Math.sin(e),0,0,Math.sin(e),Math.cos(e),0,0,0,0,1])(n.rotationX)),[0,0,-9.80665]);n.accelerationX=e.accelerationIncludingGravity.x+t[0],n.accelerationY=e.accelerationIncludingGravity.y+t[1],n.accelerationZ=e.accelerationIncludingGravity.z-t[2]}};n.year=function(){return(new Date).getFullYear()};n.day=function(){return(new Date).getDay()};n.hour=function(){return(new Date).getHours()};n.minute=function(){return(new Date).getMinutes()};n.second=function(){return(new Date).getSeconds()};n.millis=function(){return window.performance.now()-c}}(e)}
+    new Q5("global");
+
+    // --------------- UTILS LIB ---------------
+    function zip(rows) {
+        return rows[0].map((_, i) => rows.map(row => row[i]));
+    }
+
+    function clone(items) {
+        return items.map(item => Array.isArray(item) ? clone(item) : item);
+    }
+
+    function isNullOrEmpty(str) {
+        return str == null || str === '';
+    }
+
+    function base64_to_hex(str) {
+        const raw = atob(str);
+        let result = '';
+        for (let i = 0; i < raw.length; i++) {
+            const hex = raw.charCodeAt(i).toString(16);
+            result += (hex.length === 2 ? hex : '0' + hex);
+        }
+        return result.toLowerCase();        
+    }
+
+    // The maximum is exclusive and the minimum is inclusive
+    function getRandomInt(min, max) {
+        return floor(random(min, max)); 
+    }
+
+
+    function getRandomItem(items) {
+        let tot = 0;
+        for(const e of items) {
+            tot += e[1];
+        }
+
+        let x = random(tot);
+        let sum = 0;
+        for(const e of items) {
+            sum += e[1];
+            if (x < sum) return e[0];
+        }
+        return null;
+    }
+
+    function shuffle(arr) {
+        for(let i = 1; i < arr.length; ++i) {
+            let j = getRandomInt(0, i);
+            let t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+        }
+    }
+    
+    Number.prototype.round = function(places) {
+        return +(Math.round(this + "e+" + places)  + "e-" + places);
+    }
+    // --------------- TENSORFAKE LIB ---------------
+
+    class Tensor {
+        constructor(data, n, m) {
+            this.n = n;
+            this.m = m;
+            this.mat = [];
+            
+            let p = 0;
+            for(let i = 0; i < this.n; ++i) {
+                this.mat.push([]);
+                for(let j = 0; j < this.m; ++j) {
+                    this.mat[i].push(p < data.length ? data[p] : 0.0);
+                    p += 1;
+                }
+            }
+            return this;
+        }
+
+        copy() {
+            return new Tensor(this.mat.flat(), this.n, this.m);
+        }
+    }
+
+    class tfake {
+        static __linear = (x) => x;
+        static __relu = (x) => Math.max(x, 0);
+        static __leaky_relu = (x) => x > 0 ? x : x * 0.2;
+        static __sigmoid = (x) => 1 / (1 + Math.exp(-x));
+        static __tanh = (x) => Math.tanh(x);
+
+        static __apply_unary_op(a, op) {
+            const res = a.copy();
+            for(let i = 0; i < res.n; ++i) {
+                for(let j = 0; j < res.m; ++j) {
+                    res.mat[i][j] = op(res.mat[i][j]);
+                }
+            }
+            return res;
+        }
+
+        static linear = (a) => tfake.__apply_unary_op(a, tfake.__linear);
+        static relu = (a) => tfake.__apply_unary_op(a, tfake.__relu);
+        static leaky_relu = (a) => tfake.__apply_unary_op(a, tfake.__leaky_relu);
+        static sigmoid = (a) => tfake.__apply_unary_op(a, tfake.__sigmoid);
+        static tanh = (a) => tfake.__apply_unary_op(a, tfake.__tanh);
+        
+        static __add = (a, b) => a + b;
+        static __mul = (a, b) => a * b;
+
+        static __apply_binary_op = (a, b, op) => {
+            if (typeof b !== 'object') {
+                b = new Tensor([b], 1, 1);
+            }
+
+            const res = a.copy();
+            for(let i = 0; i < res.n; ++i) {
+                for(let j = 0; j < res.m; ++j) {
+                    res.mat[i][j] = op(res.mat[i][j], b.mat[i%b.n][j%b.m]);
+                }
+            }
+            return res;
+        }
+
+        static mul = (a, b) => tfake.__apply_binary_op(a, b, tfake.__mul);
+        static add = (a, b) => tfake.__apply_binary_op(a, b, tfake.__add);
+
+        static matMul(a, b) {
+            const res = new Tensor([], a.n, b.m);
+            for(let i = 0; i < res.n; ++i) {
+                for(let j = 0; j < res.m; ++j) {
+                    for(let k = 0; k < a.m; ++k) {
+                        res.mat[i][j] += a.mat[i][k] * b.mat[k][j];
+                    }
+                }
+            }
+            return res;
+        }
+
+        static softmax(a) {
+            const res = tfake.__apply_unary_op(a, x => Math.exp(x));
+            const sum_e = res.mat.flat().reduce((a, b) => a + b);
+            for(let i = 0; i < a.n; ++i) {
+                for(let j = 0; j < a.m; ++j) {
+                    res.mat[i][j] /= sum_e;
+                }
+            }
+            return res;
+        }
+    }
+
+    // --------------- PERCEPTRON LIB ---------------
+
+    class RescaleLayer {
+        constructor(scale, offset) {
+            this.scale = scale;
+            this.offset = offset;
+        }
+
+        forward(x) {
+            return tfake.add(tfake.mul(x, this.scale), this.offset);
+        }
+    }
+
+    class FlattenLayer {
+        constructor() {}
+
+        forward(x) {
+            return x.map(e => e.flat());
+        }
+    }
+
+    class DenseLayer {
+        constructor(out_dim, activation, w, b) {
+            this.out_dim = out_dim;
+            this.activation = activation;
+            this.w = w;
+            this.b = b;
+        }
+
+        forward(x) {
+            const y = tfake.add(tfake.matMul(x, this.w), this.b);
+            const z = (this.activation == null) ? y : this.activation(y);
+            return z;
+        }
+    }
+
+    class MultilayerPerceptron {
+        constructor(preprocessLayers, hiddenLayers, outputLayer) {
+            this.preprocessLayers = preprocessLayers;
+            this.hiddenLayers = hiddenLayers;
+            this.outputLayer = outputLayer;
+
+            this.totalNeurons = this.hiddenLayers.map(e => e.out_dim);
+            this.currentOrders = [];
+            this.currentIteration = null;
+        }
+
+        updateNeurons(t, iteration) {    
+            if (iteration != this.currentIteration) {
+                this.currentOrders = [];
+                for(let i = 0; i < this.totalNeurons.length; ++i) {
+                    const seed = (iteration + 1) * 100 + i;
+                    randomSeed(seed);
+                    
+                    const order = [];
+                    for(let j = 0; j < this.totalNeurons[i]; ++j) {
+                        order.push(j);
+                    }
+                    shuffle(order);
+                    this.currentOrders.push(order);
+                }
+                this.currentIteration = iteration;
+            }
+
+            const neurons = clone(this.totalNeurons);
+            const sumNeurons = neurons.reduce((a, b) => a + b);
+
+            const sumInactiveNeurons = sumNeurons * (1 - t);
+            for(let iter = 0; iter < sumInactiveNeurons; ++iter) {
+                const ratio = neurons.map((x, i) => (x-1) / this.totalNeurons[i]);
+                const ind = ratio.map((x, i) => [x, i]).reduce((r, a) => (a[0] > r[0] ? a : r))[1];
+                neurons[ind] -= Math.min(sumInactiveNeurons - iter, 1);
+            }
+
+            this.neuronsLife = [];
+            for(let i = 0; i < neurons.length; ++i) {
+                const order = this.currentOrders[i];
+                const life = Array(this.totalNeurons[i]).fill(0);
+                for(let j = 0; j < neurons[i]; ++j) {
+                    life[order[j]] = Math.min(neurons[i] - j, 1);
+                }
+                this.neuronsLife.push(life);
+            }
+        }
+
+        getInfo() {
+            return {
+                totalNeurons: clone(this.totalNeurons),
+                neuronsLife: clone(this.neuronsLife),
+                activationFunc: getNameFromActivation(this.hiddenLayers[0].activation),
+                parameters: this.hiddenLayers.map(e => ({
+                    w: e.w, 
+                    b: e.b,
+                })),
+            };
+        }
+
+        forward(x) {
+            for (const layer of this.preprocessLayers) {
+                x = layer.forward(x);
+            }
+            for (const [i, layer] of this.hiddenLayers.entries()) {
+                x = layer.forward(x);
+                const life = new Tensor(this.neuronsLife[i], 1, x.m);
+                x = tfake.mul(x, life);
+            }
+            x = this.outputLayer.forward(x);
+            return tfake.softmax(x);
+        }
+
+        forwardIgnoreLifecycle(x) {
+            for (const layer of this.preprocessLayers) {
+                x = layer.forward(x);
+            }
+            for (const layer of this.hiddenLayers) {
+                x = layer.forward(x);
+            }
+            x = this.outputLayer.forward(x);
+            return tfake.softmax(x);
+        }
+    }
+
+    // --------------- MODEL AND LIFECYCLE LIB ---------------
+
+    /* Cycle of 60 years:
+    - [0, 25): Growing
+    - [25, 50): Stable
+    - [50, 59 + 11/12): Decaying
+    - [59 + 11/12, 59 + 11.5/12): Dead
+    - [59 + 11.5/12, 60): Rebirth
+    */
+
+    const GROW_END = 25;
+    const STABLE_END = 50;
+    const DECAY_END = 59 + 11/12;
+    const DEAD_END = 59 + 11.5/12;
+    const CYCLE_END = 60;
+
+    const STATE_NAME = ['Growing', 'Stable', 'Decaying', 'Dead', 'Rebirth'];
+
+    // Shape: 1 - (1 - px)^n = py
+    function getGrowthFunc(px, py) {
+        // Solving for n:
+        // (1 - px)^n = 1 - py
+        // n = log_{1 - px} (1 - py)
+        // n = ln(1 - py) / ln(1 - px)
+        const n = Math.log(1 - py) / Math.log(1 - px);
+        return x => 1 - Math.pow(1 - x, n);
+    }
+
+    class Brain {
+        constructor(traits, inscription) {
+            const { model_name, layers_config, weight_b64, classes_name } = inscription;
+            const { perceptron, inputDim } = loadPerceptron(layers_config, weight_b64);
+            this.perceptron = perceptron;
+            this.inputDim = inputDim;
+            this.modelName = model_name;
+            this.classesName = classes_name;
+        
+            this.iteration = 0;
+            this.stage = 0;
+
+            const ts1 = new Date(parseInt(traits.birthYear), 0, 1).getTime();
+            const ts2 = new Date(parseInt(traits.birthYear) + 1, 0, 1).getTime();
+            this.birthDate = new Date(Math.floor((ts1 + ts2) / 2));
+            
+            const lifeCycle = LifeCycle.filter(e => e[0] == traits.lifeCycle)[0][2];
+            this.growSpeed = 365.0 / lifeCycle;
+            this.cycleLength = lifeCycle * 60 * 24 * 3600 * 1000;
+
+            this.growthFunc = getGrowthFunc(0.4, 0.8);
+        }
+
+        updateAge(time) {
+            const deltaTimestamp = time.getTime() - this.birthDate.getTime();
+            const deltaYear = deltaTimestamp / (1000 * 60 * 60 * 24 * 365);
+            const age = deltaYear * this.growSpeed;
+            this.iteration = Math.floor(age / CYCLE_END);        
+            const cycleTime = age - this.iteration * CYCLE_END;
+            this.age = cycleTime;
+
+            let cycleTillNextState;
+            let growth = 0;
+            if (cycleTime < GROW_END) {
+                let x = map(cycleTime, 0, GROW_END, 0, 1);
+                growth = this.growthFunc(x);
+                cycleTillNextState = (GROW_END - cycleTime) / CYCLE_END;
+                this.stage = 1;
+                this.stageRatio = map(cycleTime, 0, GROW_END, 0, 1);
+            } else if (cycleTime < STABLE_END) {
+                growth = 1;
+                cycleTillNextState = (STABLE_END - cycleTime) / CYCLE_END;
+                this.stage = 2;
+                this.stageRatio = map(cycleTime, GROW_END, STABLE_END, 0, 1);
+            } else if (cycleTime < DECAY_END) {
+                growth = map(cycleTime, STABLE_END, DECAY_END, 1, 0);
+                cycleTillNextState = (DECAY_END - cycleTime) / CYCLE_END;
+                this.stage = 3;
+                this.stageRatio = map(cycleTime, STABLE_END, DECAY_END, 0, 1);
+            } else if (cycleTime < DEAD_END) {
+                growth = 0;
+                cycleTillNextState = (DEAD_END - cycleTime) / CYCLE_END;
+                this.stage = 4;
+                this.stageRatio = map(cycleTime, DECAY_END, DEAD_END, 0, 1);
+            } else if (cycleTime < CYCLE_END) {
+                growth = 0;
+                cycleTillNextState = (CYCLE_END - cycleTime) / CYCLE_END;
+                this.stage = 5;
+                this.stageRatio = map(cycleTime, DEAD_END, CYCLE_END, 0, 1);
+            }
+
+            this.nextStateTimestamp = Math.round(time.getTime() + this.cycleLength * cycleTillNextState);
+
+            let cycleTillNextStable = (GROW_END - cycleTime) / CYCLE_END;
+            if (cycleTillNextStable < 0) cycleTillNextStable += 1;
+            this.nextStableTimestamp = Math.round(time.getTime() + this.cycleLength * cycleTillNextStable);
+
+            this.growth = growth;
+            this.perceptron.updateNeurons(growth, this.iteration);
+        }
+
+        getBrainStatus() {
+            const { totalNeurons, neuronsLife, activationFunc, parameters } = this.perceptron.getInfo();
+
+            return {
+                generalInfo: {
+                    modelName: this.modelName,
+                    inputDim: this.inputDim,
+                    classesName: this.classesName,
+                    totalNeurons,
+                    activationFunc,
+                    parameters,
+                },
+                lifeCycleInfo: {
+                    stage: this.stage,
+                    stageRatio: this.stageRatio,
+                    age: this.age,
+                    growth: this.growth,
+                    neuronsLife,
+                    nextStateTimestamp: this.nextStateTimestamp,
+                    nextStableTimestamp: this.nextStableTimestamp,
+                    rebirthCount: max(this.iteration, 0),
+                }
+            };
+        }
+        
+        classifyImage(pixels) {
+            const img_tensor = new Tensor(pixels, 1, pixels.length);
+        
+            const result_tensor = this.perceptron.forward(img_tensor);
+            const result = result_tensor.mat[0];
+        
+            return result;
+        }
+          
+        classifyImageIgnoreLifecycle(pixels) {
+            const img_tensor = new Tensor(pixels, 1, pixels.length);
+        
+            const result_tensor = this.perceptron.forwardIgnoreLifecycle(img_tensor);
+            const result = result_tensor.mat[0];
+        
+            return result;
+        }
+    }
+
+    function loadPerceptron(layersConfig, weights_b64) {
+        const preprocessLayers = [];
+        const hiddenLayers = [];
+
+        const weights = base64ToFloatArray(weights_b64);
+
+        let dim = null;
+        let p = 0;
+        let inputDim = [];
+        for(const info of layersConfig.config.layers) {
+            if (info.class_name == "InputLayer") {
+                dim = info.config.batch_input_shape.slice(1);
+                inputDim = dim;
+            } else if (info.class_name == "Rescaling") {
+                preprocessLayers.push(new RescaleLayer(info.config.scale, info.config.offset))
+            } else if (info.class_name == "Flatten") {
+                dim = [dim.reduce((a, b) => a * b)]
+            } else if (info.class_name == "Dense") {
+                const nxt_dim = [info.config.units];
+                const w_size = dim[0] * nxt_dim[0];
+                const b_size = nxt_dim[0];
+
+                const w_array = weights.subarray(p, p + w_size);
+                p += w_size;
+                const b_array = weights.subarray(p, p + b_size);
+                p += b_size;
+
+                const w_tensor = new Tensor(w_array, dim[0], nxt_dim[0]);
+                const b_tensor = new Tensor(b_array, 1, nxt_dim[0]);
+                const activation = getActivationFromName(info.config.activation);
+
+                hiddenLayers.push(new DenseLayer(nxt_dim[0], activation, w_tensor, b_tensor));
+
+                dim = nxt_dim;
+            }
+        }
+
+        const outputLayer = hiddenLayers.pop();
+
+        const perceptron = new MultilayerPerceptron(preprocessLayers, hiddenLayers, outputLayer);
+        return { perceptron, inputDim };
+    }
+
+    // Modified from https://gist.github.com/sketchpunk/f5fa58a56dcfe6168a9328e7c32a4fd4
+    function base64ToFloatArray(base64) {
+        // Base64 string converted to a char array
+        const blob	= window.atob(base64);
+        // How many floats can be made, but be even
+        const fLen = blob.length / Float32Array.BYTES_PER_ELEMENT;
+        // ArrayBuffer/DataView to convert 4 bytes into 1 float.          
+        const dView = new DataView( new ArrayBuffer(Float32Array.BYTES_PER_ELEMENT) );
+        // Final Output at the correct size
+        const fAry = new Float32Array(fLen);
+        // Position
+        let p = 0; 
+
+        for(let j=0; j < fLen; j++){
+            p = j * 4;
+            for(let b = 0; b < 4; ++b) {
+                dView.setUint8(b,blob.charCodeAt(p+b));
+            }
+            fAry[j] = dView.getFloat32(0,true);
+        }
+        return fAry;
+    }
+
+    function getActivationFromName(name) {
+        switch (name) {
+            case "relu": 
+                return tfake.relu;
+            case "sigmoid": 
+                return tfake.sigmoid;
+            case "tanh": 
+                return tfake.tanh;
+            case "leaky_relu": 
+                return tfake.leaky_relu;
+            case "linear":
+            default:
+                return tfake.linear;
+        }
+    }
+
+    function getNameFromActivation(func) {
+        switch (func) {
+            case tfake.relu: 
+                return "ReLU";
+            case tfake.sigmoid: 
+                return "Sigmoid";
+            case tfake.tanh: 
+                return "Tanh";
+            case tfake.leaky_relu: 
+                return "LeakyReLU";
+            case tfake.linear:
+                return "Linear";
+            default:
+                return "Unknown";
+        }
+    }
+
+    // --------------- API LIB ---------------
+
+    // TODO: Storing inscription_ids_base64 in an inscription after all of the Perceptron collection are minted
+    const inscription_ids_base64 = `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`;
+    const inscription_ids = base64_to_hex(inscription_ids_base64);
+
+    async function getBrainFromTokenSeed(traits, seed) {
+        const inscription = await getInscriptionFromTokenSeed(seed);
+        if (inscription == null) {            
+            return null;
+        }
+        const brain = new Brain(traits, inscription);
+        return brain;
+    }
+
+    async function getBrainFromInscription(traits, endpoint) {
+        const inscription = await getValidModelInscription(endpoint);
+        if (inscription == null) {            
+            return null;
+        }
+        const brain = new Brain(traits, inscription);
+        return brain;
+    }
+
+    async function getInscriptionFromTokenSeed(seed) {
+        if (isNullOrEmpty(seed)) return null;        
+        if (!Number.isInteger(seed) || seed < 0 && seed > 580) {
+            console.log("Seed must be a number from 1 to 580");
+            return null;
+        }
+
+        const index = seed - 1;
+        const id = inscription_ids.substring(64 * index, 64 * (index + 1));
+        if (id === "0000000000000000000000000000000000000000000000000000000000000000") {
+            console.log(`Perceptron #${seed} is not minted`);
+            return null;
+        } 
+
+        const uri = `https://ordinals.com/content/${id}i0`;
+        const rawData = await fetchData(uri, {});
+        const inscription = getModelInscriptionFromPerceptronHTML(rawData);        
+        if (verifyModelInscription(inscription)) return inscription;
+        return null;
+    }
+
+    async function getValidModelInscription(endpoint) {
+        if (isNullOrEmpty(endpoint)) return null;
+        
+        let inscription = null;
+        const rawData = await fetchData(endpoint, {});
+        try {
+            // Check if endpoint is a JSON file
+            inscription = JSON.parse(rawData);
+        } catch (err) {
+            console.log("Inscription endpoint is not a JSON File")
+        }
+
+        if (verifyModelInscription(inscription)) return inscription;
+        return null;
+    }
+
+    function getModelInscriptionFromPerceptronHTML(rawHTML) {
+        const start = rawHTML.indexOf(`const p={"`) + 8;
+        const end = rawHTML.indexOf(`"]},`) + 3;
+        const rawJSON = rawHTML.substring(start, end);
+        try {
+            const inscription = JSON.parse(rawJSON);
+            return inscription;            
+        } catch (err) {
+            console.log(`Invalid JSON: ${rawJSON}`);
+            return null;
+        }
+    }
+
+    function verifyModelInscription(inscription) {
+        if (inscription == null) return false;
+
+        const { classes_name, training_traits, layers_config, weight_b64 } = inscription;
+
+        if (!Array.isArray(classes_name)) return false;
+        if (training_traits == null) return false;
+        try {
+            loadPerceptron(layers_config, weight_b64);
+        } catch (err) {
+            return false;
+        }
+
+        return true;
+    }
+
+    async function fetchData(endpoint, options) {
+        try {
+            const response = await fetch(endpoint, options);
+            const data = await response.text();
+            return data;
+        } catch (err) {
+            console.log(err);
+            return null;
+        }
+    }
+
+    </script>
+
+    <script id="snippet-random-code" type="text/javascript">
+
+        // DO NOT EDIT THIS SECTION
+
+        let seed = window.location.href.split('/').find(t => t.includes('i0'));
+
+        if (seed == null) {
+            const alphabet = "0123456789abcdefghijklmnopqrstuvwsyz";
+            seed = new URLSearchParams(window.location.search).get("seed") || Array(64).fill(0).map(_ => alphabet[(Math.random() * alphabet.length) | 0]).join('') + "i0";
+        } else {
+            let pattern = "seed=";
+            for (let i = 0; i < seed.length - pattern.length; ++i) {
+                if (seed.substring(i, i + pattern.length) == pattern) {
+                    seed = seed.substring(i + pattern.length);
+                    break;
+                }
+            }
+        }
+
+        function cyrb128($) {
+            let _ = 1779033703, u = 3144134277, i = 1013904242, l = 2773480762;
+            for (let n = 0, r; n < $.length; n++) _ = u ^ Math.imul(_ ^ (r = $.charCodeAt(n)), 597399067), u = i ^ Math.imul(u ^ r, 2869860233), i = l ^ Math.imul(i ^ r, 951274213), l = _ ^ Math.imul(l ^ r, 2716044179);
+            return _ = Math.imul(i ^ _ >>> 18, 597399067), u = Math.imul(l ^ u >>> 22, 2869860233), i = Math.imul(_ ^ i >>> 17, 951274213), l = Math.imul(u ^ l >>> 19, 2716044179), [(_ ^ u ^ i ^ l) >>> 0, (u ^ _) >>> 0, (i ^ _) >>> 0, (l ^ _) >>> 0]
+        }
+
+        function sfc32($, _, u, i) {
+            return function () {
+                u >>>= 0, i >>>= 0;
+                var l = ($ >>>= 0) + (_ >>>= 0) | 0;
+                return $ = _ ^ _ >>> 9, _ = u + (u << 3) | 0, u = (u = u << 21 | u >>> 11) + (l = l + (i = i + 1 | 0) | 0) | 0, (l >>> 0) / 4294967296
+            }
+        }
+
+
+        // IMPORTANT: Instead of Math.random(), use this function mathRand() for random number generation.
+        // This function generates a random number between 0 and 1 with on-chain seed.
+
+        let mathRand = sfc32(...cyrb128(seed));
+
+    </script>
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Add traits here ↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+    const LifeCycle = [
+        ['60 Years', 3, 365],
+        ['60 Months', 40, 30],
+        ['60 Weeks', 37, 7],
+        ['60 Days', 20, 1],
+    ];
+
+    const BirthYear = [
+        ['1943', 1],
+        ['1951', 1.5],
+        ['1957', 2],
+        ['1969', 2.5],
+        ['1970', 3],
+        ['1980', 3.5],
+        ['1982', 4],
+        ['1986', 4.5],
+        ['1988', 5],
+        ['1997', 5.5],
+        ['1998', 6],
+        ['2002', 6.5],
+        ['2009', 7],
+        ['2012', 7.5],
+        ['2014', 8],
+        ['2015', 8.5],
+        ['2016', 9],
+        ['2023', 15],
+    ];
+
+    function getTraits(perceptronSeed) {
+        randomSeed(perceptronSeed);
+        noiseSeed(perceptronSeed);
+
+        for(let i = 0; i < 100; ++i) random(1.0);
+
+        // Recover the trait of original artwork
+        let lifeCycle = getRandomItem(LifeCycle);
+        let birthYear = getRandomItem(BirthYear);
+
+        const traits = {
+            lifeCycle,
+            birthYear,  
+        };
+
+        return traits;
+    }
+
+    function reportTraits(traits) {
+        console.log(traits);
+        window.$generativeTraits = {
+            "Life Cycle": traits.lifeCycle,
+            "Birth Year": traits.birthYear,
+        }
+    }
+
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Add traits here ↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+
+    // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Add your code here ↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+    /**
+     * Inscription endpoint can be a uri of:
+     * - JSON file describing a perceptron model
+     * - Inscription of a Perceptron collection item (https://generative.xyz/generative/1002573)
+     * - Token seed (from 1 to 580) of a Perceptron collection item (note that some item may not be minted and will lead to invalid model)
+     */
+
+    const perceptronSeed = 89;
+    const customModelEndpoint = `sample_model.json`;
+
+    const traits = getTraits(perceptronSeed);
+    reportTraits(traits);
+
+    const container = document.createElement("div");
+    document.body.prepend(container);
+
+    async function loadAndDisplayInfo() {
+        container.innerHTML = "Loading...";
+        
+        let brain;
+        if (customModelEndpoint) {
+            // Load custom model if specified
+            brain = await getBrainFromInscription(traits, customModelEndpoint)
+        } else {
+            // Otherwise, load default model included in the Perceptron
+            brain = await getBrainFromTokenSeed(traits, perceptronSeed);
+        }
+
+        if (brain == null) {
+            container.innerHTML = "Invalid perceptron seed";
+            return;
+        }
+        container.innerHTML = "Loading completed.";
+
+        // Update and get brain status
+        brain.updateAge(new Date());
+        const {generalInfo, lifeCycleInfo} = brain.getBrainStatus();
+
+        // Display general information
+        container.appendChild(createParagraph("Perceptron general information:"));
+
+        const {inputDim, parameters, totalNeurons, activationFunc, modelName, classesName} = generalInfo;
+
+        const [h, w, c] = inputDim;
+        const generalDesc = [
+            `Model name: ${modelName}`,
+            `Classes name: ${classesName.join(', ')}`,
+            `Input dimension: ${h} x ${w} x ${c}`,
+            `Hidden layer neurons count: ${totalNeurons.join(', ')}`,
+            `Activation function: ${activationFunc}`,
+        ];
+        container.appendChild(createUnorderedList(generalDesc));
+
+        console.log(parameters);
+
+        // Display traits information
+        container.appendChild(createParagraph("Traits information:"));
+        const { birthYear, lifeCycle } = traits;
+
+        const traitsInfo = [
+            `Birth year: ${birthYear}`,
+            `Life cycle: ${lifeCycle}`,
+        ];
+        container.appendChild(createUnorderedList(traitsInfo));
+
+        // Display life cycle information
+        container.appendChild(createParagraph("Perceptron life cycle information:"));
+        const {stage, stageRatio, age, growth, neuronsLife, nextStateTimestamp, nextStableTimestamp, rebirthCount} = lifeCycleInfo;
+
+        const lifeCycleDesc = [
+            `Current state: ${STATE_NAME[stage-1]}`,
+            `Elapsed portion of current state: ${(stageRatio * 100).toFixed(2)}%`,
+            `Current age (in Perceptron Year): ${Math.ceil(age)}`,
+            `Current performance: ${(growth * 100).toFixed(2)}%`,
+            `Neurons life: [${neuronsLife.map(e => `[${e.map(e => e.round(3)).join(',')}]`).join(', ')}]`,
+            `Next state at: ${new Date(nextStateTimestamp)}`,
+            `Next stable state at: ${new Date(nextStableTimestamp)}`,
+            `Rebirth count: ${rebirthCount}`,
+        ];
+        container.appendChild(createUnorderedList(lifeCycleDesc));
+
+        // Predict a randomly generated image and display result
+        container.appendChild(createParagraph("Random image predicting result:"));
+
+        imagePixels = [];
+        for(let i = 0; i < w * h * c; ++i)
+            imagePixels.push(Math.random() * 256);
+
+        const result = brain.classifyImage(imagePixels);
+            
+        const formatted_result = formatResult(result, classesName);
+        const result_list = createUnorderedList(formatted_result);
+        container.append(result_list);
+    }
+
+    function formatResult(result, classes_name) {
+        const predictions = zip([result, classes_name]);
+
+        const sorted_predictions = predictions.sort((a, b) => a[0] > b[0] ? -1 : 1);
+        return sorted_predictions.map(e => `${e[1]}: ${(e[0] * 100).toFixed(2)}%`);
+    }
+
+    function createParagraph(text) {
+        const div = document.createElement("div");
+        div.innerText = text;
+        return div;
+    }
+
+    function createUnorderedList(items) {        
+        const ul = document.createElement("ul");
+        items.forEach((text) => {
+            const li = document.createElement("li");
+            li.appendChild(document.createTextNode(text)); 
+            ul.appendChild(li);
+        })
+        return ul
+    }
+
+    loadAndDisplayInfo();
+
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Add your code here ↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+</script>
+</body>
+</html>
