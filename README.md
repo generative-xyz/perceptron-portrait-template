@@ -18,24 +18,50 @@ async getBrain(perceptronSeed: number, customModelEndpoint: string): Brain
 - `perceptronSeed: number` - From `1` to `580`, specify the token seed of the Perceptron
 - `customModelEndpoint: string` - The URI of the JSON file describing the custom model the Perceptron will use
 
-**Return:** The loaded Perceptron, which is an instance of the `Brain` class
+**Return:** The loaded Perceptron, which is an instance of the `Brain` class.
+
+### Brain.updateAge
+
+```
+updateAge(time: Date)
+```
+
+**Description:** Update the Perceptron's state and age using the provided timestamp.
+
+**Parameters:**
+- `time: Date` - The provided timestamp
+
+**Return:** None
 
 
-### Model.classifyImage
+### Brain.classifyImage
 
 ```
 classifyImage(pixels: number[]): number[]
 ```
 
-**Description:** Classify the input image
+**Description:** Classify the input image with performance affected by the current state (for example, the model will have lower performance in Growing/Decaying state).
 
 **Parameters:**
-- `pixel: number[]` - 1D array of size `w * h * c`, each number from `0` to `255` describing the pixels value of the image (`w`, `h`, `c` are the input dimension of the model, see for more detail)
+- `pixel: number[]` - 1D array of size `w * h * c`, each number from `0` to `255` describing the pixels value of the image (`w`, `h`, `c` are the input dimension of the model, see for more detail).
 
-**Return:** An array of number from `0` to `1`, describing for each class the probability of this image belonging to that class
+**Return:** An array of number from `0` to `1`, describing for each class the probability of this image belonging to that class.
+
+### Brain.classifyImageIgnoreLifeCycle
+
+```
+classifyImageIgnoreLifeCycle(pixels: number[]): number[]
+```
+
+**Description:** Classify the input image with maximum performance regardless of the current state (for example, the model will have maximum performance even in Growing/Decaying state).
+
+**Parameters:**
+- `pixel: number[]` - 1D array of size `w * h * c`, each number from `0` to `255` describing the pixels value of the image (`w`, `h`, `c` are the input dimension of the model, see for more detail).
+
+**Return:** An array of number from `0` to `1`, describing for each class the probability of this image belonging to that class.
 
 
-### Model.getInfo
+### Brain.getInfo
 
 ```
 getInfo(): {
@@ -60,11 +86,11 @@ getInfo(): {
 }
 ```
 
-**Description:** Return the information of the model
+**Description:** Return the information of the model.
 
 **Parameters:** None
 
-**Return:** An object containing the information of the model
+**Return:** An object containing the information of the model.
 - `generalInfo`
     - `modelName` - A `string` describes model's name
     - `classesName` - Array of `string` describes the name of image classes that the model will classify

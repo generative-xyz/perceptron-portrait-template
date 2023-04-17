@@ -315,7 +315,7 @@
             return tfake.softmax(x);
         }
 
-        forwardIgnoreLifecycle(x) {
+        forwardIgnoreLifeCycle(x) {
             for (const layer of this.preprocessLayers) {
                 x = layer.forward(x);
             }
@@ -365,7 +365,7 @@
             this.classesName = classes_name;
         
             this.iteration = 0;
-            this.stage = 0;
+            this.state = 0;
 
             const ts1 = new Date(parseInt(traits.birthYear), 0, 1).getTime();
             const ts2 = new Date(parseInt(traits.birthYear) + 1, 0, 1).getTime();
@@ -392,28 +392,28 @@
                 let x = map(cycleTime, 0, GROW_END, 0, 1);
                 growth = this.growthFunc(x);
                 cycleTillNextState = (GROW_END - cycleTime) / CYCLE_END;
-                this.stage = 1;
-                this.stageRatio = map(cycleTime, 0, GROW_END, 0, 1);
+                this.state = 1;
+                this.stateRatio = map(cycleTime, 0, GROW_END, 0, 1);
             } else if (cycleTime < STABLE_END) {
                 growth = 1;
                 cycleTillNextState = (STABLE_END - cycleTime) / CYCLE_END;
-                this.stage = 2;
-                this.stageRatio = map(cycleTime, GROW_END, STABLE_END, 0, 1);
+                this.state = 2;
+                this.stateRatio = map(cycleTime, GROW_END, STABLE_END, 0, 1);
             } else if (cycleTime < DECAY_END) {
                 growth = map(cycleTime, STABLE_END, DECAY_END, 1, 0);
                 cycleTillNextState = (DECAY_END - cycleTime) / CYCLE_END;
-                this.stage = 3;
-                this.stageRatio = map(cycleTime, STABLE_END, DECAY_END, 0, 1);
+                this.state = 3;
+                this.stateRatio = map(cycleTime, STABLE_END, DECAY_END, 0, 1);
             } else if (cycleTime < DEAD_END) {
                 growth = 0;
                 cycleTillNextState = (DEAD_END - cycleTime) / CYCLE_END;
-                this.stage = 4;
-                this.stageRatio = map(cycleTime, DECAY_END, DEAD_END, 0, 1);
+                this.state = 4;
+                this.stateRatio = map(cycleTime, DECAY_END, DEAD_END, 0, 1);
             } else if (cycleTime < CYCLE_END) {
                 growth = 0;
                 cycleTillNextState = (CYCLE_END - cycleTime) / CYCLE_END;
-                this.stage = 5;
-                this.stageRatio = map(cycleTime, DEAD_END, CYCLE_END, 0, 1);
+                this.state = 5;
+                this.stateRatio = map(cycleTime, DEAD_END, CYCLE_END, 0, 1);
             }
 
             this.nextStateTimestamp = Math.round(time.getTime() + this.cycleLength * cycleTillNextState);
@@ -439,8 +439,8 @@
                     parameters,
                 },
                 lifeCycleInfo: {
-                    stage: this.stage,
-                    stageRatio: this.stageRatio,
+                    state: this.state,
+                    stateRatio: this.stateRatio,
                     age: this.age,
                     growth: this.growth,
                     neuronsLife,
@@ -460,10 +460,10 @@
             return result;
         }
           
-        classifyImageIgnoreLifecycle(pixels) {
+        classifyImageIgnoreLifeCycle(pixels) {
             const img_tensor = new Tensor(pixels, 1, pixels.length);
         
-            const result_tensor = this.perceptron.forwardIgnoreLifecycle(img_tensor);
+            const result_tensor = this.perceptron.forwardIgnoreLifeCycle(img_tensor);
             const result = result_tensor.mat[0];
         
             return result;
@@ -858,11 +858,11 @@
 
         // Display life cycle information
         container.appendChild(createParagraph("Perceptron life cycle information:"));
-        const {stage, stageRatio, age, growth, neuronsLife, nextStateTimestamp, nextStableTimestamp, rebirthCount} = lifeCycleInfo;
+        const {state, stateRatio, age, growth, neuronsLife, nextStateTimestamp, nextStableTimestamp, rebirthCount} = lifeCycleInfo;
 
         const lifeCycleDesc = [
-            `Current state: ${STATE_NAME[stage-1]}`,
-            `Elapsed portion of current state: ${(stageRatio * 100).toFixed(2)}%`,
+            `Current state: ${STATE_NAME[state-1]}`,
+            `Elapsed portion of current state: ${(stateRatio * 100).toFixed(2)}%`,
             `Current age (in Perceptron Year): ${Math.ceil(age)}`,
             `Current performance: ${(growth * 100).toFixed(2)}%`,
             `Neurons life: [${neuronsLife.map(e => `[${e.map(e => e.round(3)).join(',')}]`).join(', ')}]`,
