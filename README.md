@@ -74,8 +74,8 @@ getInfo(): {
         parameters: {w: Tensor, b: Tensor}[],
     },
     lifeCycleInfo: {
-        stage: number,
-        stageRatio: number,
+        state: number,
+        stateRatio: number,
         age: number,
         growth: number,
         neuronsLife: number[][],
@@ -99,8 +99,8 @@ getInfo(): {
     - `activationFunc` - A `string` describes the name of the activation function (`ReLU`, `LeakyReLU`, `Tanh` or `Sigmoid`) used in each hidden layer
     - `parameters` - An array containing the parameters of the model. Each element describe the weight (`w`) and bias (`b`) matrices of a hidden layer. 
 - `lifeCycleInfo`
-    - `stage` - A number from `1` to `5` describe the current state of the model (`1`: Growing, `2`: Stable, `3`: Decaying, `4`: Dead, `5`: Rebirth)
-    - `stageRatio` - A number from `0` to `1` describe the elapsed portion of current state
+    - `state` - A number from `1` to `5` describe the current state of the model (`1`: Growing, `2`: Stable, `3`: Decaying, `4`: Dead, `5`: Rebirth)
+    - `stateRatio` - A number from `0` to `1` describe the elapsed portion of current state
     - `age` - A number from `0` to `60` describe the current age of the model in Perceptron Year
     - `growth` - A number from `0` to `1` describe the current activation of the Perceptron
     - `neuronsLife` - A 2D arrays of number from `0` to `1` describing the activation level of each neurons in the Perceptron
