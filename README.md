@@ -1,6 +1,6 @@
-# Become the next Perceptron artist
+# Create art based on Perceptron AI model
 
-This template provide necessary tool to load a Perceptron model (including its lifecycle) from token seed, and classify images using the model.
+This template provide necessary tools to load a Perceptron AI model (including its lifecycle) from token seed, and classify images using the model.
 
 This template is based on the [simple Bitcoin generative art template](https://github.com/generative-xyz/generative-xyz-template-simple).
 
